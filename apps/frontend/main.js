@@ -13,7 +13,6 @@ async function connectWallet() {
   }
 
   try {
-    // request account
     const accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
     });
@@ -21,7 +20,6 @@ async function connectWallet() {
     const address = accounts[0];
     addressText.innerText = address;
 
-    // get balance
     const balanceHex = await window.ethereum.request({
       method: "eth_getBalance",
       params: [address, "latest"],
@@ -30,7 +28,6 @@ async function connectWallet() {
     const balance = parseInt(balanceHex, 16) / 1e18;
     balanceText.innerText = balance.toFixed(4);
 
-    // get network
     const chainId = await window.ethereum.request({
       method: "eth_chainId",
     });
